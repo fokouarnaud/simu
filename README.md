@@ -9,6 +9,7 @@ npm install gray-matter
 ## challenge link
 - https://www.frontendmentor.io/challenges/manage-landing-page-SLXqC6P5
 - https://dev.to/andrewespejo/how-to-design-a-simple-and-beautiful-navbar-using-nextjs-and-tailwindcss-26p1
+- https://medium.com/get-it-working/get-prismjs-working-in-react-a6d989e59290
 
 ### Ressources
 - https://tailwindcss.com/
