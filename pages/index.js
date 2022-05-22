@@ -1,21 +1,15 @@
 import Head from 'next/head'
-import BlogSection from '../components/BlogSection'
-import Hero from '../components/Hero'
-import NavBar from '../components/NavBar'
-import SidePanel from '../components/SidePanel'
-import TrendingList from '../components/TrendingList'
+import SimuSection from '../components/SimuSection'
+
 
 export default function Home() {
   return (
    <div>
      <Head>
-       <title>Acti-blog</title>
+       <title>Simu</title>
      </Head>
-     <NavBar/>
-     <Hero/>
-     <TrendingList/>
-     
-     <BlogSection/>
+    
+     <SimuSection/>
     </div>
   )
 }
