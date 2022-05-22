@@ -1,8 +1,16 @@
-import React from 'react'
-import BlogCard from './BlogCard'
-import SidePanel from './SidePanel'
+import React, { useEffect } from 'react';
+import Prism from "prismjs";
 
+
+const getHighlightedText = (el) => {
+
+    return <pre><code className="language-javascript">{`${el}`}</code></pre>;
+}
 const SimuCard = () => {
+    useEffect(() => {
+        Prism.highlightAll();
+    }, []);
+
     return (
         <div className="p-5">
             <div>
@@ -26,7 +34,7 @@ const SimuCard = () => {
                                             </div>
                                             <div className="col-span-1 text-gray-400">1</div>
                                             <div className="col-span-10">
-                                                <pre>var couleur_feu = "rouge";</pre>
+                                                {getHighlightedText(`var couleur_feu = "rouge";`)}
                                             </div>
 
                                         </div>
@@ -34,12 +42,12 @@ const SimuCard = () => {
                                     <div>
                                         <div className="w-full grid  gap-3 grid-cols-12">
                                             <div className="col-span-1 ">
-                                               
+
 
                                             </div>
                                             <div className="col-span-1 text-gray-400 ">2</div>
                                             <div className="col-span-10 ">
-                                                <pre>if(couleur_feu == "rouge"){`{`}</pre>
+                                                {getHighlightedText(`if(couleur_feu == "rouge"){`)}
                                             </div>
 
                                         </div>
@@ -47,35 +55,35 @@ const SimuCard = () => {
                                     <div>
                                         <div className="w-full grid  gap-3 grid-cols-12">
                                             <div className="col-span-1 bg-green-50">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                                 </svg>
                                             </div>
                                             <div className="col-span-1 text-gray-400 ">3</div>
                                             <div className="col-span-10 bg-slate-100">
-                                                <pre>   console.log("le pieton traverse");</pre>
+                                                {getHighlightedText(`   console.log("le pieton traverse");`)}
                                             </div>
 
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div>
                                         <div className="w-full grid  gap-3 grid-cols-12">
                                             <div className="col-span-1 ">
                                             </div>
                                             <div className="col-span-1 text-gray-400 ">4</div>
                                             <div className="col-span-10 ">
-                                                <pre>{`}`}else{`{`}</pre>
+                                                {getHighlightedText(`}else{`)}
                                             </div>
 
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div>
                                         <div className="w-full grid  gap-3 grid-cols-12">
                                             <div className="col-span-1 ">
                                             </div>
                                             <div className="col-span-1 text-gray-400 ">5</div>
                                             <div className="col-span-10 ">
-                                                <pre>   console.log("le pieton attend");</pre>
+                                                {getHighlightedText(` console.log("le pieton attend");`)}
                                             </div>
 
                                         </div>
@@ -86,11 +94,11 @@ const SimuCard = () => {
                                             </div>
                                             <div className="col-span-1 text-gray-400 ">6</div>
                                             <div className="col-span-10 ">
-                                                <pre>{`}`}</pre>
+                                                {getHighlightedText(`}`)}
                                             </div>
 
                                         </div>
-                                    </div> 
+                                    </div>
 
                                 </div>
                                 <div className="flex flex-row my-4 md:mb-0">
