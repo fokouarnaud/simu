@@ -7,7 +7,7 @@ const getHighlightedText = (el, language = "python") => {
 
     return <pre><code className={`language-${language}`}>{`${el}`}</code></pre>;
 }
-const SimuCard = () => {
+const SimuCardIfElse = () => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
@@ -141,4 +141,4 @@ const SimuCard = () => {
     )
 }
 
-export default SimuCard;
+export default SimuCardIfElse;
