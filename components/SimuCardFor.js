@@ -13,40 +13,46 @@ const SimuCardFor = () => {
     }, []);
 
     const [state, setState] = useState({
-        valFeu: 2,
+        valNbreFois: 2,
         ligneValFeu: 1,
         numLigneExecute: 1,
         numEtape: 1,
-        totalEtape: 3
+        totalEtape: 6
     });
 
     const handleClickNext=()=>{
+
         if(state.numLigneExecute==1){
             setState({ ...state, numLigneExecute: 2,numEtape:2 });
-        }else if(state.numLigneExecute==2 && state.valFeu!="rouge"){
-            setState({ ...state, numLigneExecute: 5,numEtape:3 });
-        }else if(state.numLigneExecute==2 && state.valFeu=="rouge"){
+        }else if(state.numLigneExecute==2 && state.valNbreFois>parseInt((state.numEtape-2)/2)){
+            setState({ ...state, numLigneExecute: 3,numEtape:state.numEtape+1 });
+        }else if(state.numLigneExecute==3){
             setState({ ...state, ligneValFeu: 1,
-        numLigneExecute: 1,
-        numEtape: 1, numLigneExecute: 3,numEtape:3  });
+        numLigneExecute: 2,
+        numEtape: state.numEtape+1, numLigneExecute: 2  });
+        }else if(state.valNbreFois>parseInt((state.numEtape-2)/2)){
+            setState({ ...state, ligneValFeu: 1,
+                numLigneExecute: 2,
+                numEtape: state.numEtape+1, numLigneExecute: 3  });
         }
     }
     const handleClickPrevious= ()=>{
-        if(state.numLigneExecute==2){
+        if(state.numLigneExecute==2 && state.numEtape==2){
             setState({ ...state, numLigneExecute: 1 ,numEtape:1 });
-        }else if(state.numLigneExecute==3){
-            setState({ ...state, numLigneExecute: 2,numEtape:2 });
-        }else if(state.numLigneExecute==5){
-            setState({ ...state, numLigneExecute: 2,numEtape:2 });
+        }else if(state.numLigneExecute==3 && state.numEtape>2){
+            setState({ ...state, numLigneExecute: 2,numEtape:state.numEtape-1 });
+        }else if(state.numLigneExecute==2 && state.numEtape>2){
+            setState({ ...state, numLigneExecute: 3,numEtape:state.numEtape-1 });
         }
     }
-    const handleChangeValFeu = (e) => {
+    const handleChangeNbrefois = (e) => {
         e.preventDefault();
         setState({ ...state,
+            totalEtape:2+(e.target.value)*2,
             ligneValFeu: 1,
                 numLigneExecute: 1,
                 numEtape: 1, numLigneExecute: 1,
-            valFeu: e.target.value });
+            valNbreFois: e.target.value });
 
     }
 
@@ -64,7 +70,7 @@ const SimuCardFor = () => {
                                 <h4 className="text-sm text-gray-400 pb-3">code</h4>
                                 <div className=" text-gray-600  rounded-sm border border-gray-300 p-3  overflow-auto">
                                     <CodeLine numLigne={1} numLigneExecute={state.numLigneExecute}>
-                                        {getHighlightedText(`nombre_fois = ${state.valFeu}`)}
+                                        {getHighlightedText(`nombre_fois = ${state.valNbreFois}`)}
                                     </CodeLine>
                                     <CodeLine  numLigne={2} numLigneExecute={state.numLigneExecute}>
                                         {getHighlightedText(`for i in range(nombre_fois):`)}
@@ -81,9 +87,9 @@ const SimuCardFor = () => {
                                     <div className=" text-gray-600  rounded-sm border border-gray-300 p-3 ">
                                         <span className="inline-block mr-2">{getHighlightedText(`nombre_fois =`)}</span>
                                         <input className="inline-block outline-none border-b border-gray-500 p-1"
-                                            placeholder={state.valFeu}
-                                            value={state.valFeu}
-                                            onChange={handleChangeValFeu}
+                                            placeholder={state.valNbreFois}
+                                            value={state.valNbreFois}
+                                            onChange={handleChangeNbrefois}
                                         />
                                     </div>
 
