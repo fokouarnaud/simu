@@ -113,8 +113,8 @@ const SimuCardFor = () => {
                                         <span className="text-base" >Previous</span>
                                     </button>
                                     <span className=" mr-10 text-gray-400"> Step {state.numEtape}/{state.totalEtape} </span>
-                                    <button onClick={handleClickNext} className={`flex flex-row-reverse items-center justify-center ${state.numLigneExecute==5 
-                                        || state.numLigneExecute==3 ? "text-gray-400":"text-gray-800"} `}>
+                                    <button onClick={handleClickNext} className={`flex flex-row-reverse items-center justify-center ${state.numEtape>=state.totalEtape
+                                        ? "text-gray-400":"text-gray-800"} `}>
                                         <i className="ml-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
