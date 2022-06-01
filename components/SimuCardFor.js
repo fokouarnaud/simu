@@ -14,7 +14,7 @@ const SimuCardFor = () => {
 
     const [state, setState] = useState({
         valNbreFois: 2,
-        ligneValFeu: 1,
+        nbreBoucle: 0,
         numLigneExecute: 1,
         numEtape: 1,
         totalEtape: 6
@@ -25,22 +25,22 @@ const SimuCardFor = () => {
         if(state.numLigneExecute==1){
             setState({ ...state, numLigneExecute: 2,numEtape:2 });
         }else if(state.numLigneExecute==2 && state.valNbreFois>parseInt((state.numEtape-2)/2)){
-            setState({ ...state, numLigneExecute: 3,numEtape:state.numEtape+1 });
+            setState({ ...state, nbreBoucle: state.nbreBoucle+1 ,numLigneExecute: 3,numEtape:state.numEtape+1 });
         }else if(state.numLigneExecute==3){
-            setState({ ...state, ligneValFeu: 1,
+            setState({ ...state,
         numLigneExecute: 2,
         numEtape: state.numEtape+1, numLigneExecute: 2  });
         }else if(state.valNbreFois>parseInt((state.numEtape-2)/2)){
-            setState({ ...state, ligneValFeu: 1,
+            setState({ ...state,
                 numLigneExecute: 2,
                 numEtape: state.numEtape+1, numLigneExecute: 3  });
         }
     }
     const handleClickPrevious= ()=>{
         if(state.numLigneExecute==2 && state.numEtape==2){
-            setState({ ...state, numLigneExecute: 1 ,numEtape:1 });
+            setState({ ...state, numLigneExecute: 1 ,numEtape:1, nbreBoucle: 0 });
         }else if(state.numLigneExecute==3 && state.numEtape>2){
-            setState({ ...state, numLigneExecute: 2,numEtape:state.numEtape-1 });
+            setState({ ...state, numLigneExecute: 2,numEtape:state.numEtape-1,nbreBoucle:state.nbreBoucle-1 });
         }else if(state.numLigneExecute==2 && state.numEtape>2){
             setState({ ...state, numLigneExecute: 3,numEtape:state.numEtape-1 });
         }
@@ -49,11 +49,18 @@ const SimuCardFor = () => {
         e.preventDefault();
         setState({ ...state,
             totalEtape:2+(e.target.value)*2,
-            ligneValFeu: 1,
+            nbreBoucle: 1,
                 numLigneExecute: 1,
                 numEtape: 1, numLigneExecute: 1,
             valNbreFois: e.target.value });
 
+    }
+    let numbers = [];
+    for (let i = 0; i < state.nbreBoucle; i++) {
+        numbers.push(i);
+    }
+    if(state.numEtape<=2){
+        numbers = []
     }
 
     return (
@@ -122,9 +129,12 @@ const SimuCardFor = () => {
                         <div className="">
                             <div className=" md:py-8">
                                 <h4 className="text-sm text-gray-400 pb-3">Output</h4>
-                                <div className=" text-gray-600  rounded-sm border border-gray-300 p-3 ">
-                                    {state.numLigneExecute==3 && getHighlightedText(`le pieton traverse`, 'console')}
-                                    {state.numLigneExecute==5 && getHighlightedText(`le pieton attend`, 'console')}
+                                <div className=" text-gray-600  rounded-sm border border-gray-300 p-3  overflow-auto">
+                                    {
+                                    numbers.map(val =>(
+                                        getHighlightedText(`${val+1} fois -> j'aime la programmation!`, 'console')
+                                    ))}
+                                   
                                 </div>
 
                             </div>
