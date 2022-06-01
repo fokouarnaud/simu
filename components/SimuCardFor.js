@@ -49,7 +49,7 @@ const SimuCardFor = () => {
         e.preventDefault();
         setState({ ...state,
             totalEtape:2+(e.target.value)*2,
-            nbreBoucle: 1,
+            nbreBoucle: 0,
                 numLigneExecute: 1,
                 numEtape: 1, numLigneExecute: 1,
             valNbreFois: e.target.value });
